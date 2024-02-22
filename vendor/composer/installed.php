@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'abrha/bienesraices-poo',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '064066c0e6045d9cb22b6a8191cc15001c0de913',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'abrha/bienesraices-poo' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '064066c0e6045d9cb22b6a8191cc15001c0de913',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
