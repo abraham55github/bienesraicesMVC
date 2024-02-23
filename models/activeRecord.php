@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Model;
 
 class ActiveRecord{
     //base de datos
@@ -55,7 +55,7 @@ class ActiveRecord{
         //Mensaje de exito 
         if($resultado){
             //redireccionar al usuario
-            header('Location: /bienesraicesPOO/admin/index.php?resultado=1');
+            header('Location: /admin?resultado=1');
         }
 
 
@@ -79,7 +79,7 @@ class ActiveRecord{
      
        if($resultado){
         //redireccionar al usuario
-        header('Location: /bienesraicesPOO/admin/index.php?resultado=2');
+        header('Location: /admin?resultado=2');
         }
 
     }
@@ -92,7 +92,7 @@ class ActiveRecord{
 
         if($resultado) {
             $this->eliminarImagen();
-            header('Location: /bienesraicesPOO/admin/index.php?resultado=3');
+            header('Location: /admin?resultado=3');
         }
     }
 
