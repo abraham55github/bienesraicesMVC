@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 
 class PaginasController{
-    public static function index(router $router){
+    public static function index(Router $router){
 
         $propiedades = Propiedad::get(3);
         $inicio = true;
@@ -19,11 +19,11 @@ class PaginasController{
         ]);
 
     }
-    public static function nosotros(router $router){
+    public static function nosotros(Router $router){
 
         $router->render('/paginas/nosotros');
     }
-    public static function propiedades(router $router){
+    public static function propiedades(Router $router){
 
         $propiedades = Propiedad::all();
 
@@ -31,7 +31,7 @@ class PaginasController{
             'propiedades'=> $propiedades
         ]);
     }
-    public static function propiedad(router $router){
+    public static function propiedad(Router $router){
 
         $id = validarORedireccionar('/propiedades');
 
@@ -41,13 +41,14 @@ class PaginasController{
             'propiedad'=> $propiedad
         ]);
     }
-    public static function blog(router $router){
+    public static function blog(Router $router){
         $router->render('/paginas/blog');
     }
-    public static function entradaBlog(router $router){
+    public static function entradaBlog(Router $router){
         $router->render('/paginas/entradaBlog');
     }
-    public static function contacto(router $router){
+    public static function contacto(Router $router){
+        $mensaje = null;
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $respuestas = $_POST['contacto'];
@@ -78,15 +79,25 @@ class PaginasController{
             $contenido = '<html>'; 
             $contenido .='<p>Tienes un nuevo mensaje </p> ';
             $contenido .='<p>Nombre: '. $respuestas['nombre'] .' </p> ';
-            $contenido .='<p>Email: '. $respuestas['email'] .' </p> ';
-            $contenido .='<p>Telefono: '. $respuestas['telefono'] .' </p> ';
+            
+            
+            // Enviar de forma condicional
+            if($respuestas ['contacto'] === 'telefono'){
+                $contenido .='<p>Eligio ser contactado por telefono </p> ';
+                $contenido .='<p>Telefono: '. $respuestas['telefono'] .' </p> ';
+                $contenido .='<p>Fecha: '. $respuestas['fecha'] .' </p> ';
+                $contenido .='<p>Hora: '. $respuestas['hora'] .' </p> ';    
+            }else {
+                $contenido .='<p>Eligio ser contactado por email </p> ';
+                $contenido .='<p>Email: '. $respuestas['email'] .' </p> ';
+            }
+
+            
             $contenido .='<p>Mensaje: '. $respuestas['mensaje'] .' </p> ';
             $contenido .='<p>Vende o Compra: '. $respuestas['tipo'] .' </p> ';
             $contenido .='<p>Precio o Presupuesto: $'. $respuestas['precio'] .' </p> ';
             $contenido .='<p>Prefiere ser contactado Por: '. $respuestas['contacto'] .' </p> ';
-            $contenido .='<p>Fecha: '. $respuestas['fecha'] .' </p> ';
-            $contenido .='<p>Hora: '. $respuestas['hora'] .' </p> ';
-            
+
 
 
             $contenido .='</html>';
@@ -99,15 +110,15 @@ class PaginasController{
 
             //enviar el mail
             if($mail->send()){
-                echo "mensaje enviado correctamente";
+                $mensaje = "Mensaje enviado correctamente";
             }else {
-                echo "El mensaje no se pudo enviar...";
+                $mensaje = "El mensaje no se pudo enviar...";
             }
 
         }
 
        $router->render('paginas/contacto', [
-
+            'mensaje'=> $mensaje
        ]);
     }
 

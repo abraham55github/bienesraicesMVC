@@ -1,7 +1,7 @@
 <?php 
     
     namespace MVC;
-    class router {
+    class Router {
 
         public $rutasGet = [];
         public $rutasPost = [];
@@ -14,6 +14,14 @@
         }
 
         public function comprobarRutas(){
+
+            session_start();
+
+            $auth = $_SESSION['login'] ?? null;
+
+            //arreglo de rutas protegidas..
+            $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
+
             $urlActual = $_SERVER['PATH_INFO'] ?? '/';
             $metodo = $_SERVER['REQUEST_METHOD'];
 
@@ -23,10 +31,13 @@
                 $fn = $this->rutasPost[$urlActual] ?? null;
             }
 
+            if(in_array($urlActual, $rutas_protegidas) && !$auth){
+               header('Location: /');
+                
+            }
+
             if($fn){
-                //LA URL EXISTE Y HAY UNA FUNCION ASOCIADA
-
-
+                //LA URL EXISTE Y HAY UNA FUNCION ASOCIADa
                 call_user_func($fn, $this);
             }else{
                 echo 'Pagina no encontrada';
