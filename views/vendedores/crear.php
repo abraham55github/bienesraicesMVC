@@ -1,5 +1,5 @@
 <main class="contenedor">
-    <h1>Crear</h1>
+    <h1>Nuevo vendedor</h1>
 
     <?php foreach($errores as $error): ?>
             <div class="alerta error">

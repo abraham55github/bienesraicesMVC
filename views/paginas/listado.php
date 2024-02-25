@@ -1,19 +1,3 @@
-<?php 
-    //importar la conexion
-    use App\Propiedad;
-
-    $propiedades = Propiedad::all();
-
-    if($_SERVER['SCRIPT_NAME'] === '/bienesraicesPOO/anuncios.php'){
-        $propiedades = Propiedad::all();
-    } else {
-        $propiedades = Propiedad::get(3);
-    }
-
-    // if($_SERVER['SCRIPT_NAME'] === '/anuncios')
-?>
-
-
 <div class="contenedor-anuncios">
 
             <?php foreach($propiedades as $propiedad){ ?>
@@ -39,7 +23,7 @@
                             <p><?php echo $propiedad->estacionamiento?></p>
                         </li>
                     </ul>
-                    <a class="boton boton-amarillo-block" href="anuncio.php?id=<?php echo $propiedad->id?>">
+                    <a class="boton boton-amarillo-block" href="propiedad?id=<?php echo $propiedad->id?>">
                         Ver propiedad
                     </a>
                 </div> <!-- Contenido-anuncio -->

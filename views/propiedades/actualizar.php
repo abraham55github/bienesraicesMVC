@@ -1,5 +1,5 @@
 <main class="contenedor">
-    <h1>Crear</h1>
+    <h1>Actualizar Propiedad</h1>
 
     <?php foreach($errores as $error): ?>
             <div class="alerta error">
@@ -13,6 +13,6 @@
 
         <?php include __DIR__ . '/formularios.php';   ?>
 
-        <input type="submit" value="Crear propiedad" class="boton boton-verde">
+        <input type="submit" value="Actualizar propiedad" class="boton boton-verde">
     </form>
 </main>
